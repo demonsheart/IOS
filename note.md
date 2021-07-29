@@ -1,5 +1,15 @@
 ## IOS Note
 
+### 关于Height
+
+```swift
+let statusHeight: CGFloat = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+let navigationHeight: CGFloat = self.navigationController?.navigationBar.frame.height ?? 0
+let tabbarHeight: CGFloat = self.tabBarController?.tabBar.frame.size.height ?? 0
+```
+
+
+
 ### 回调
 
 * ParentVC
@@ -23,6 +33,8 @@ var callBack: ((String) -> Void)?
 * 图层结构
 
   > **self.layer -> gradient ---mask---> shapeLayer**
+  >
+  > **特别注意shapeLayer的坐标原点是以gradient为基准的**
   >
   > ```swift
   > self.layer.addSublayer(gradient)
