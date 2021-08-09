@@ -10,6 +10,16 @@ let tabbarHeight: CGFloat = self.tabBarController?.tabBar.frame.size.height ?? 0
 
 
 
+### 隐藏tabbars
+
+```swift
+ let childVC = ChildViewController()
+ childVC.hidesBottomBarWhenPushed = true // 一般而言，子视图隐藏Bar即可
+ self.navigationController?.pushViewController(childVC, animated: true)
+```
+
+
+
 ### 回调
 
 * ParentVC
@@ -48,3 +58,5 @@ var callBack: ((String) -> Void)?
   The area:  shape's alpha == 1:  can see gradient
 
   总而言之，shape层作为mask层，有颜色的地方会被gradient填充，没颜色的地方照旧。
+  
+  
