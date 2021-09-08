@@ -6,6 +6,14 @@
 let statusHeight: CGFloat = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
 let navigationHeight: CGFloat = self.navigationController?.navigationBar.frame.height ?? 0
 let tabbarHeight: CGFloat = self.tabBarController?.tabBar.frame.size.height ?? 0
+
+var safeInsets: UIEdgeInsets {
+    if #available(iOS 11.0, *) {
+        return UIApplication.shared.mainWindow?.safeAreaInsets ?? UIEdgeInsets.zero
+    } else {
+        return UIEdgeInsets.zero
+    }
+}
 ```
 
 
@@ -58,5 +66,28 @@ var callBack: ((String) -> Void)?
   The area:  shape's alpha == 1:  can see gradient
 
   总而言之，shape层作为mask层，有颜色的地方会被gradient填充，没颜色的地方照旧。
-  
-  
+
+
+
+### Alamofire例子
+
+```swift
+Alamofire.request("http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=e6831708-02b4-4ef8-98fa-4b4ce53459d9").responseJSON(completionHandler: { response in
+     if response.result.isSuccess {
+         // convert data to dictionary array
+         if let result = response.value as? [String: AnyObject] {
+             let dataList: [[String : Any]]? = result["result"]?["results"] as? [[String : Any]]
+             for data in dataList! {
+                 print("locationName: \(data["locationName"]!)") // 所在縣市
+                 print("parameterName1: \(data["parameterName1"]!)") // 天氣
+                 print("startTime: \(data["startTime"]!)") // 起始時間
+                 print("endTime: \(data["endTime"]!)") // 結束時間
+                 print()
+             }
+         }
+     } else {
+         print("error: \(response.error)")
+     }
+ })
+```
+
