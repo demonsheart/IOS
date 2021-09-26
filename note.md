@@ -1,5 +1,13 @@
 ## IOS Note
 
+### 关于导航栏底部问题
+
+```swift
+UINavigationBar.appearance().isTranslucent = false // 导航条背景是否透明
+
+当上面的值为false时，加入的子视图会自动从导航栏下方开始，而不用自己计算
+```
+
 ### 关于Height
 
 ```swift
