@@ -8,6 +8,13 @@ UINavigationBar.appearance().isTranslucent = false // 导航条背景是否透�
 当上面的值为false时，加入的子视图会自动从导航栏下方开始，而不用自己计算
 ```
 
+### 关于safeArea
+
+```swift
+static let topPadding = window?.safeAreaInsets.top
+static let bottomPadding = window?.safeAreaInsets.bottom
+```
+
 ### 关于Height
 
 ```swift
